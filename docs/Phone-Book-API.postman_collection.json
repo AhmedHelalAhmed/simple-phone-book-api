@@ -1,0 +1,70 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Phone-Book-API",
+		"_postman_id": "bcfab92f-847b-069d-f78a-4a16beac887a",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all contacts",
+			"request": {
+				"url": "{{url}}/contacts",
+				"method": "GET",
+				"header": [
+					{
+						"key": "appauthkey",
+						"value": "123123",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Get all contacts"
+			},
+			"response": []
+		},
+		{
+			"name": "Get contact by id",
+			"request": {
+				"url": "{{url}}/contacts",
+				"method": "GET",
+				"header": [
+					{
+						"key": "appauthkey",
+						"value": "123123",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Get contact by id"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Contact",
+			"request": {
+				"url": "{{url}}/contacts",
+				"method": "POST",
+				"header": [
+					{
+						"key": "appauthkey",
+						"value": "123123",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\": \"ahmed helal\",\n\"address\": \"Alexandria Al Bitash\",\n\"email\": \"ahmed.helal.online@gmail.com\"\n}"
+				},
+				"description": "Get all contacts"
+			},
+			"response": []
+		}
+	]
+}

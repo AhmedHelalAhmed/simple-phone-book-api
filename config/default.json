@@ -1,4 +1,5 @@
 {
   "port": 3000,
-  "AppAuthKey": 123123
+  "AppAuthKey": "123123",
+  "dataPath": "app/Data/data.json"
 }
