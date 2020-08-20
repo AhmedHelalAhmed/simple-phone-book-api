@@ -1,0 +1,25 @@
+{
+  "name": "simple-phone-book-api",
+  "version": "1.0.0",
+  "description": "simple APIs for phone book user contact information",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "keywords": [
+    "ahmed",
+    "helal",
+    "phone book",
+    "api",
+    "nodejs",
+    "express"
+  ],
+  "author": "Ahmed Helal Ahmed",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.3.1",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  }
+}
