@@ -6,7 +6,11 @@ exports.log = (message) => {
 
 exports.getFileContentParsedSync = (path) => {
   const dataContent = fs.readFileSync(path);
-  return JSON.parse(dataContent);
+  let data = [];
+  if (dataContent.toString()) {
+    data = JSON.parse(dataContent);
+  }
+  return data;
 };
 
 exports.readFileAsync = (path, callback) => {

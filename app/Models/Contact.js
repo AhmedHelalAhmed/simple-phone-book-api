@@ -18,11 +18,25 @@ module.exports.create = (inputs) => {
       phoneNumbers: inputs.phoneNumbers,
     });
     helpers.WriteIntoFileAsync(dataPath, JSON.stringify(data), () => {
-      helpers.log("write done sucessfully");
+      helpers.log("Write done sucessfully");
     });
   });
 };
 module.exports.find = (id) => {
   let data = this.allSync();
   return data.find((phoneBook) => phoneBook.id === id);
+};
+
+module.exports.delete = (id) => {
+  helpers.readFileAsync(dataPath, (error, fileContent) => {
+    let data = [];
+    if (fileContent.toString()) {
+      data = JSON.parse(fileContent);
+    }
+    const contact = data.find((contact) => contact.id === id);
+    data.splice(data.indexOf(contact), 1);
+    helpers.WriteIntoFileAsync(dataPath, JSON.stringify(data), () => {
+      helpers.log("Delete done sucessfully");
+    });
+  });
 };

@@ -25,12 +25,14 @@ app.get("/", WelcomeController.__invoke); // Welcome endpoint
 app.get("/contacts", contactController.index); // Get all contacts
 app.post("/contacts", contactController.store); // Create Contact
 app.get("/contacts/:id", contactController.show); // Get contact by id
+app.delete("/contacts/:id", contactController.destroy); // Delete contact
+
 /*
 TODO
-Delete contact
 Update contact
 Implement Custom endpoint for search by name, email phone
 */
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

@@ -38,3 +38,16 @@ module.exports.show = (req, res) => {
     },
   });
 };
+
+module.exports.destroy = (req, res) => {
+  let contact = Conact.find(parseInt(req.params.id));
+  if (!contact) {
+    res.status(404).send();
+  }
+  Conact.delete(parseInt(req.params.id));
+  res.send({
+    status: true,
+    message: "Sucess",
+    data: {},
+  });
+};
