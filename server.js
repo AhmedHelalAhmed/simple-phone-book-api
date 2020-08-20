@@ -3,7 +3,7 @@ const app = express();
 const config = require("config");
 const port = config.get("port");
 const appAuthKey = config.get("AppAuthKey");
-const contactsController = require("./app/Controllers/PhoneBook/ContactsController");
+const contactController = require("./app/Controllers/Contacts/ContactController");
 const WelcomeController = require("./app/Controllers/WelcomeController");
 
 app.use((req, res, next) => {
@@ -22,9 +22,9 @@ app.use(
 );
 
 app.get("/", WelcomeController.__invoke); // Welcome endpoint
-app.get("/contacts", contactsController.index); // Get all contacts
-app.post("/contacts", contactsController.store); // Create Contact
-app.get("/contacts/:id", contactsController.show); // Get contact by id
+app.get("/contacts", contactController.index); // Get all contacts
+app.post("/contacts", contactController.store); // Create Contact
+app.get("/contacts/:id", contactController.show); // Get contact by id
 /*
 TODO
 Delete contact
