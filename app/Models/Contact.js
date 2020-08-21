@@ -28,9 +28,15 @@ module.exports.create = (input, callback) => {
   });
 };
 
-module.exports.find = (id) => {
-  let data = this.allSync();
-  return data.find((phoneBook) => phoneBook.id === id);
+module.exports.find = (id, callback) => {
+  helpers.readFileAsync(dataPath, (error, fileContent) => {
+    let data = [];
+    if (fileContent.toString()) {
+      data = JSON.parse(fileContent);
+    }
+    const contact = data.find((contact) => contact.id === id);
+    callback(contact, true, "sucess");
+  });
 };
 
 module.exports.delete = (id, callback) => {
@@ -69,17 +75,28 @@ module.exports.update = (id, input, callback) => {
   });
 };
 
-module.exports.where = (queries) => {
-  let data = this.allSync();
+module.exports.where = (queries, callback) => {
+  helpers.readFileAsync(dataPath, (error, fileContent) => {
+    let data = [];
+    if (fileContent.toString()) {
+      data = JSON.parse(fileContent);
+    }
+    queries = queries.filter((item) => item.value !== undefined);
+    if (!queries.length) {
+      callback([], true, "success");
+    } else {
+      const contacts = data.filter((contact) => {
+        let valid = true;
+        queries.forEach((query) => {
+          if (query.value && !contact[query.name].includes(query.value)) {
+            valid = false;
+          }
+        });
 
-  return data.filter((contact) => {
-    let valid = true;
-    queries.forEach((query) => {
-      if (query.value && !contact[query.name].includes(query.value)) {
-        valid = false;
-      }
-    });
+        return valid;
+      });
 
-    return valid;
+      callback(contacts, true, "success");
+    }
   });
 };

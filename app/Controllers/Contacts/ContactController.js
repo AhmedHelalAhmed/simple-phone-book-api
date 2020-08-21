@@ -33,18 +33,19 @@ module.exports.store = (req, res) => {
 };
 
 module.exports.show = (req, res) => {
-  let contact = Conact.find(parseInt(req.params.id));
-  if (!contact) {
-    res.status(404).send();
-  } else {
-    res.send({
-      status: true,
-      message: "Sucess",
-      data: {
-        contact: contact,
-      },
-    });
-  }
+  Conact.find(parseInt(req.params.id), (contact, status, message) => {
+    if (!contact) {
+      res.status(404).send();
+    } else {
+      res.send({
+        status: status,
+        message: message,
+        data: {
+          contact: contact,
+        },
+      });
+    }
+  });
 };
 
 module.exports.destroy = (req, res) => {
