@@ -13,18 +13,23 @@ module.exports.index = (req, res) => {
 };
 
 module.exports.store = (req, res) => {
-  Conact.create({
-    name: req.body.name,
-    address: req.body.address,
-    email: req.body.email,
-    phoneNumbers: req.body.phoneNumbers,
-  });
-
-  res.send({
-    status: true,
-    message: "Sucess",
-    data: {},
-  });
+  Conact.create(
+    {
+      name: req.body.name,
+      address: req.body.address,
+      email: req.body.email,
+      phoneNumbers: req.body.phoneNumbers,
+    },
+    (contact, message) => {
+      res.send({
+        status: true,
+        message: message,
+        data: {
+          contact: contact,
+        },
+      });
+    }
+  );
 };
 
 module.exports.show = (req, res) => {

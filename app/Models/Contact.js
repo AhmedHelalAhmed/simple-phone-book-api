@@ -8,21 +8,22 @@ module.exports.allSync = () => {
 module.exports.allAsync = (callback) => {
   helpers.getFileContentParsedASync(dataPath, callback);
 };
-module.exports.create = (input) => {
+module.exports.create = (input, callback) => {
   helpers.readFileAsync(dataPath, (error, fileContent) => {
     let data = [];
     if (fileContent.toString()) {
       data = JSON.parse(fileContent);
     }
-    data.push({
+    insertedContact = {
       id: data.length + 1,
       name: input.name,
       address: input.address,
       email: input.email,
       phoneNumbers: input.phoneNumbers,
-    });
+    };
+    data.push(insertedContact);
     helpers.WriteIntoFileAsync(dataPath, JSON.stringify(data), () => {
-      helpers.log("Write done sucessfully");
+      callback(insertedContact, "sucess");
     });
   });
 };
