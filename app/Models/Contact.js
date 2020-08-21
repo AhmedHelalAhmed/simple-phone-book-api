@@ -23,7 +23,7 @@ module.exports.create = (input, callback) => {
     };
     data.push(insertedContact);
     helpers.WriteIntoFileAsync(dataPath, JSON.stringify(data), () => {
-      callback(insertedContact, "sucess");
+      callback(insertedContact, true, "sucess");
     });
   });
 };
@@ -70,7 +70,7 @@ module.exports.update = (id, input, callback) => {
     data[data.indexOf(targetContact)]["phoneNumbers"] = input.phoneNumbers;
 
     helpers.WriteIntoFileAsync(dataPath, JSON.stringify(data), () => {
-      callback(data[data.indexOf(targetContact)], "success", true);
+      callback(data[data.indexOf(targetContact)], true, "success");
     });
   });
 };

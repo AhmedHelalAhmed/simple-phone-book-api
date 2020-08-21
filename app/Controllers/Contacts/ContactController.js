@@ -1,10 +1,10 @@
 const Conact = require("../../../app/Models/Contact");
 
 module.exports.index = (req, res) => {
-  Conact.allAsync((contacts) => {
+  Conact.allAsync((contacts,status,message) => {
     res.send({
-      status: true,
-      message: "Sucess",
+      status: status,
+      message: message,
       data: {
         contacts: contacts,
       },
@@ -20,9 +20,9 @@ module.exports.store = (req, res) => {
       email: req.body.email,
       phoneNumbers: req.body.phoneNumbers,
     },
-    (contact, message) => {
+    (contact, status, message) => {
       res.send({
-        status: true,
+        status: status,
         message: message,
         data: {
           contact: contact,
@@ -73,7 +73,7 @@ module.exports.update = (req, res) => {
       email: req.body.email,
       phoneNumbers: req.body.phoneNumbers,
     },
-    (contact, message, status) => {
+    (contact, status, message) => {
       if (!contact) {
         res.status(404).send();
       }

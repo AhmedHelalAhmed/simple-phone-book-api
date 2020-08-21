@@ -20,7 +20,7 @@ exports.getFileContentParsedASync = (path, callback) => {
       data = JSON.parse(dataContent);
     }
 
-    callback(data);
+    callback(data, true, "success");
   });
 };
 
