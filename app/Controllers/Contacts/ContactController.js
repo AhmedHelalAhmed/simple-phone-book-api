@@ -1,13 +1,11 @@
 const Conact = require("../../../app/Models/Contact");
 
 module.exports.index = (req, res) => {
-  Conact.allAsync((contacts,status,message) => {
+  Conact.allAsync((data, status, message) => {
     res.send({
+      data: data,
       status: status,
       message: message,
-      data: {
-        contacts: contacts,
-      },
     });
   });
 };
@@ -20,45 +18,39 @@ module.exports.store = (req, res) => {
       email: req.body.email,
       phoneNumbers: req.body.phoneNumbers,
     },
-    (contact, status, message) => {
+    (data, status, message) => {
       res.send({
+        data: data,
         status: status,
         message: message,
-        data: {
-          contact: contact,
-        },
       });
     }
   );
 };
 
 module.exports.show = (req, res) => {
-  Conact.find(parseInt(req.params.id), (contact, status, message) => {
-    if (!contact) {
+  Conact.find(parseInt(req.params.id), (data, status, message) => {
+    if (!data.contact) {
       res.status(404).send();
     } else {
       res.send({
+        data: data,
         status: status,
         message: message,
-        data: {
-          contact: contact,
-        },
       });
     }
   });
 };
 
 module.exports.destroy = (req, res) => {
-  Conact.delete(parseInt(req.params.id), (contact, status, message) => {
-    if (!contact) {
+  Conact.delete(parseInt(req.params.id), (data, status, message) => {
+    if (!data.contact) {
       res.status(404).send();
     } else {
       res.send({
+        data: data,
         status: status,
         message: message,
-        data: {
-          contact: contact,
-        },
       });
     }
   });
@@ -73,17 +65,15 @@ module.exports.update = (req, res) => {
       email: req.body.email,
       phoneNumbers: req.body.phoneNumbers,
     },
-    (contact, status, message) => {
-      if (!contact) {
+    (data, status, message) => {
+      if (!data.contact) {
         res.status(404).send();
       }
 
       res.send({
+        data: data,
         status: status,
         message: message,
-        data: {
-          contact: contact,
-        },
       });
     }
   );

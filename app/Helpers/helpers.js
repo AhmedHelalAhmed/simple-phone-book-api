@@ -4,15 +4,6 @@ exports.log = (message) => {
   console.log(message);
 };
 
-exports.getFileContentParsedSync = (path) => {
-  const dataContent = fs.readFileSync(path);
-  let data = [];
-  if (dataContent.toString()) {
-    data = JSON.parse(dataContent);
-  }
-  return data;
-};
-
 exports.getFileContentParsedASync = (path, callback) => {
   fs.readFile(path, (error, dataContent) => {
     let data = [];
@@ -20,7 +11,13 @@ exports.getFileContentParsedASync = (path, callback) => {
       data = JSON.parse(dataContent);
     }
 
-    callback(data, true, "success");
+    callback(
+      {
+        contacts: data,
+      },
+      true,
+      "success"
+    );
   });
 };
 

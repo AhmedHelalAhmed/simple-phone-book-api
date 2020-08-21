@@ -2,9 +2,6 @@ const config = require("config");
 const dataPath = config.get("dataPath");
 const helpers = require("../../app/Helpers/helpers");
 
-module.exports.allSync = () => {
-  return helpers.getFileContentParsedSync(dataPath);
-};
 module.exports.allAsync = (callback) => {
   helpers.getFileContentParsedASync(dataPath, callback);
 };
@@ -23,7 +20,13 @@ module.exports.create = (input, callback) => {
     };
     data.push(insertedContact);
     helpers.WriteIntoFileAsync(dataPath, JSON.stringify(data), () => {
-      callback(insertedContact, true, "sucess");
+      callback(
+        {
+          contact: insertedContact,
+        },
+        true,
+        "sucess"
+      );
     });
   });
 };
@@ -34,8 +37,13 @@ module.exports.find = (id, callback) => {
     if (fileContent.toString()) {
       data = JSON.parse(fileContent);
     }
-    const contact = data.find((contact) => contact.id === id);
-    callback(contact, true, "sucess");
+    callback(
+      {
+        contact: data.find((contact) => contact.id === id),
+      },
+      true,
+      "sucess"
+    );
   });
 };
 
@@ -47,11 +55,23 @@ module.exports.delete = (id, callback) => {
     }
     const targetContact = data.find((contact) => parseInt(contact.id) === id);
     if (!targetContact) {
-      callback(targetContact, false, "failed");
+      callback(
+        {
+          contact: targetContact,
+        },
+        false,
+        "failed"
+      );
     } else {
       data.splice(data.indexOf(targetContact), 1);
       helpers.WriteIntoFileAsync(dataPath, JSON.stringify(data), () => {
-        callback(targetContact, true, "success");
+        callback(
+          {
+            contact: targetContact,
+          },
+          true,
+          "success"
+        );
       });
     }
   });
@@ -70,7 +90,13 @@ module.exports.update = (id, input, callback) => {
     data[data.indexOf(targetContact)]["phoneNumbers"] = input.phoneNumbers;
 
     helpers.WriteIntoFileAsync(dataPath, JSON.stringify(data), () => {
-      callback(data[data.indexOf(targetContact)], true, "success");
+      callback(
+        {
+          contact: data[data.indexOf(targetContact)],
+        },
+        true,
+        "success"
+      );
     });
   });
 };
