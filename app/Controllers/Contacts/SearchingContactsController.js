@@ -7,13 +7,11 @@ module.exports.__invoke = (req, res) => {
       { name: "email", value: req.query.email },
       { name: "phoneNumbers", value: req.query.phone },
     ],
-    (contacts, status, message) => {
+    (data, status, message) => {
       res.send({
         status: status,
         message: message,
-        data: {
-          contacts: contacts,
-        },
+        data: data,
       });
     }
   );

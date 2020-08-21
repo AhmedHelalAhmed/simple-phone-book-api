@@ -68,13 +68,13 @@ module.exports.update = (req, res) => {
     (data, status, message) => {
       if (!data.contact) {
         res.status(404).send();
+      } else {
+        res.send({
+          data: data,
+          status: status,
+          message: message,
+        });
       }
-
-      res.send({
-        data: data,
-        status: status,
-        message: message,
-      });
     }
   );
 };

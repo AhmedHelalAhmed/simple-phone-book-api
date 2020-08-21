@@ -7,17 +7,29 @@ exports.log = (message) => {
 exports.getFileContentParsedASync = (path, callback) => {
   fs.readFile(path, (error, dataContent) => {
     let data = [];
-    if (dataContent.toString()) {
-      data = JSON.parse(dataContent);
-    }
 
-    callback(
-      {
-        contacts: data,
-      },
-      true,
-      "success"
-    );
+    if (error) {
+      this.WriteIntoFileAsync(path, JSON.stringify([]), () => {
+        callback(
+          {
+            contacts: data,
+          },
+          true,
+          "success"
+        );
+      });
+    } else {
+      if (dataContent.toString()) {
+        data = JSON.parse(dataContent);
+      }
+      callback(
+        {
+          contacts: data,
+        },
+        true,
+        "success"
+      );
+    }
   });
 };
 
