@@ -26,6 +26,7 @@ app.get("/contacts", contactController.index); // Get all contacts
 app.post("/contacts", contactController.store); // Create Contact
 app.get("/contacts/:id", contactController.show); // Get contact by id
 app.delete("/contacts/:id", contactController.destroy); // Delete contact
+app.put("/contacts/:id", contactController.update); // Update contact
 
 /*
 TODO

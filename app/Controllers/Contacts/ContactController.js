@@ -51,3 +51,23 @@ module.exports.destroy = (req, res) => {
     data: {},
   });
 };
+
+module.exports.update = (req, res) => {
+
+  let contact = Conact.find(parseInt(req.params.id));
+  if (!contact) {
+    res.status(404).send();
+  }
+  Conact.update(contact, {
+    name: req.body.name,
+    address: req.body.address,
+    email: req.body.email,
+    phoneNumbers: req.body.phoneNumbers,
+  });
+
+  res.send({
+    status: true,
+    message: "Sucess",
+    data: {},
+  });
+};
