@@ -1,12 +1,14 @@
 const Conact = require("../../../app/Models/Contact");
 
 module.exports.index = (req, res) => {
-  res.send({
-    status: true,
-    message: "Sucess",
-    data: {
-      contacts: Conact.allSync(),
-    },
+  Conact.allASync((contacts) => {
+    res.send({
+      status: true,
+      message: "Sucess",
+      data: {
+        contacts: contacts,
+      },
+    });
   });
 };
 
@@ -53,7 +55,6 @@ module.exports.destroy = (req, res) => {
 };
 
 module.exports.update = (req, res) => {
-
   let contact = Conact.find(parseInt(req.params.id));
   if (!contact) {
     res.status(404).send();

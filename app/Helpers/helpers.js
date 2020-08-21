@@ -13,6 +13,17 @@ exports.getFileContentParsedSync = (path) => {
   return data;
 };
 
+exports.getFileContentParsedASync = (path, callback) => {
+  fs.readFile(path, (error, dataContent) => {
+    let data = [];
+    if (dataContent.toString()) {
+      data = JSON.parse(dataContent);
+    }
+
+    callback(data);
+  });
+};
+
 exports.readFileAsync = (path, callback) => {
   fs.readFile(path, callback);
 };
