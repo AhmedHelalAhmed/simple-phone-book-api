@@ -25,9 +25,55 @@
 			"response": []
 		},
 		{
+			"name": "Search by name, email phone",
+			"request": {
+				"url": {
+					"raw": "{{url}}/contacts-custom-search?name=ahmed&phone=01221585306&email=ahmed.helal.online@gmail.com",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"contacts-custom-search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "ahmed",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "phone",
+							"value": "01221585306",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "email",
+							"value": "ahmed.helal.online@gmail.com",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "appauthkey",
+						"value": "123123",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Search by name, email phone"
+			},
+			"response": []
+		},
+		{
 			"name": "Get contact by id",
 			"request": {
-				"url": "{{url}}/contacts",
+				"url": "{{url}}/contacts/1",
 				"method": "GET",
 				"header": [
 					{
@@ -38,6 +84,23 @@
 				],
 				"body": {},
 				"description": "Get contact by id"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete contact",
+			"request": {
+				"url": "{{url}}/contacts/1",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "appauthkey",
+						"value": "123123",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Delete contact"
 			},
 			"response": []
 		},
@@ -60,7 +123,32 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"name\": \"ahmed helal\",\n\"address\": \"Alexandria Al Bitash\",\n\"email\": \"ahmed.helal.online@gmail.com\"\n}"
+					"raw": "{\n\"name\": \"ahmed helal\",\n\"address\": \"Alexandria Al Bitash\",\n\"email\": \"ahmed.helal.online@gmail.com\",\n\"phoneNumbers\":[\"01221585306\"]\n}"
+				},
+				"description": "Get all contacts"
+			},
+			"response": []
+		},
+		{
+			"name": "Update contact",
+			"request": {
+				"url": "{{url}}/contacts/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "appauthkey",
+						"value": "123123",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\": \"helal001\",\n\"address\": \"Alexandria Al Bitash\",\n\"email\": \"ahmed.helal.online@gmail.com\",\n\"phoneNumbers\":[\"01221585306\"]\n}"
 				},
 				"description": "Get all contacts"
 			},

@@ -58,3 +58,23 @@ module.exports.update = (contact, input) => {
     });
   });
 };
+
+module.exports.where = (queries) => {
+  let data = this.allSync();
+
+  return data.filter((contact) => {
+    console.log(contact);
+    let valid = true;
+    queries.forEach((query) => {
+      console.log(query);
+
+      if (query.value && !contact[query.name].includes(query.value)) {
+        valid = false;
+      }
+      console.log("out of if");
+    });
+    console.log("now it's " + valid);
+
+    return valid;
+  });
+};
