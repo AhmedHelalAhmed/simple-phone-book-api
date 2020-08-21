@@ -36,44 +36,54 @@ module.exports.show = (req, res) => {
   let contact = Conact.find(parseInt(req.params.id));
   if (!contact) {
     res.status(404).send();
+  } else {
+    res.send({
+      status: true,
+      message: "Sucess",
+      data: {
+        contact: contact,
+      },
+    });
   }
-  res.send({
-    status: true,
-    message: "Sucess",
-    data: {
-      contact: contact,
-    },
-  });
 };
 
 module.exports.destroy = (req, res) => {
-  let contact = Conact.find(parseInt(req.params.id));
-  if (!contact) {
-    res.status(404).send();
-  }
-  Conact.delete(parseInt(req.params.id));
-  res.send({
-    status: true,
-    message: "Sucess",
-    data: {},
+  Conact.delete(parseInt(req.params.id), (contact, status, message) => {
+    if (!contact) {
+      res.status(404).send();
+    } else {
+      res.send({
+        status: status,
+        message: message,
+        data: {
+          contact: contact,
+        },
+      });
+    }
   });
 };
 
 module.exports.update = (req, res) => {
-  let contact = Conact.find(parseInt(req.params.id));
-  if (!contact) {
-    res.status(404).send();
-  }
-  Conact.update(contact, {
-    name: req.body.name,
-    address: req.body.address,
-    email: req.body.email,
-    phoneNumbers: req.body.phoneNumbers,
-  });
+  Conact.update(
+    parseInt(req.params.id),
+    {
+      name: req.body.name,
+      address: req.body.address,
+      email: req.body.email,
+      phoneNumbers: req.body.phoneNumbers,
+    },
+    (contact, message, status) => {
+      if (!contact) {
+        res.status(404).send();
+      }
 
-  res.send({
-    status: true,
-    message: "Sucess",
-    data: {},
-  });
+      res.send({
+        status: status,
+        message: message,
+        data: {
+          contact: contact,
+        },
+      });
+    }
+  );
 };
