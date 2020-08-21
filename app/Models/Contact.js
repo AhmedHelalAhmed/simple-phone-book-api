@@ -5,8 +5,8 @@ const helpers = require("../../app/Helpers/helpers");
 module.exports.allSync = () => {
   return helpers.getFileContentParsedSync(dataPath);
 };
-module.exports.allASync = (callback) => {
-  return helpers.getFileContentParsedASync(dataPath,callback);
+module.exports.allAsync = (callback) => {
+  helpers.getFileContentParsedASync(dataPath, callback);
 };
 module.exports.create = (input) => {
   helpers.readFileAsync(dataPath, (error, fileContent) => {

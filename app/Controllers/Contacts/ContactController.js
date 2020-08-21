@@ -1,7 +1,7 @@
 const Conact = require("../../../app/Models/Contact");
 
 module.exports.index = (req, res) => {
-  Conact.allASync((contacts) => {
+  Conact.allAsync((contacts) => {
     res.send({
       status: true,
       message: "Sucess",
