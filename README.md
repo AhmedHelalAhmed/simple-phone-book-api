@@ -23,7 +23,7 @@ Each contact have the following information
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. you can check docs directory to get postman collection.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. you can check docs directory to get postman collection or [postman collection](https://www.getpostman.com/collections/ad6cf7c0d83f72e0cfb3)
 
 ### Prerequisites
 
@@ -60,7 +60,7 @@ To start the Server
 
 - **Ahmed Helal Ahmed** - _Initial work_ - [Ahmed Helal Ahmed](https://github.com/AhmedHelalAhmed)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/AhmedHelalAhmed/simple-phone-book-api/contributors) who participated in this project.
 
 ## License
 
